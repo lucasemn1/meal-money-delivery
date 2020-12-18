@@ -5,6 +5,7 @@ export const Title = styled.Text`
   font-size: 30px;
   margin-top: 60px;
   margin-bottom: 12px;
+  color: ${(props) => props.theme.colors.primaryFontColor}
 `;
 
 export const Subtitle = styled.Text`

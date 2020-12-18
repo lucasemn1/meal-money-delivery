@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from 'styled-components';
 import lightTheme from './styles/themes/lightTheme';
+import darkTheme from './styles/themes/darkTheme';
 
 const Stack = createStackNavigator();
 

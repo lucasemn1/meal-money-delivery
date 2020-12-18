@@ -5,5 +5,6 @@ export default {
     secondaryFontColor: '#7C7D7E',
     mainColor: '#FC6011', 
     placeholderColor: '#B6B7B7',
+    inputColor: '#f2f2f2',
   },
 }
