@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import {
   Page,
   LoginText,
@@ -11,13 +11,16 @@ import {
   SocialNetworkIcon,
   FlexRow,
 } from './style';
+import {
+  BoldText
+} from '../../../styles/typography';
 import auth from '@react-native-firebase/auth';
-import {useState} from 'react';
+import { useState } from 'react';
 import * as firebaseServices from '../../services/firebase';
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState({value: '', hasError: false});
-  const [password, setPassword] = useState({value: '', hasError: false});
+  const [email, setEmail] = useState({ value: '', hasError: false });
+  const [password, setPassword] = useState({ value: '', hasError: false });
 
   function login() {
     // alert('OPAA');
@@ -47,7 +50,7 @@ const Login = ({ navigation }) => {
         .then(() => {
           alert('Login realizado com sucesso!');
         })
-        .catch((error) => 
+        .catch((error) =>
           alert(firebaseServices.ERRORS_MESSAGES[error.code])
           // alert(error.code)
         );
@@ -86,11 +89,11 @@ const Login = ({ navigation }) => {
         }
       />
 
-      <Button style={{backgroundColor: '#FC6011'}} onPress={login}>
-        <ButtonText style={{color: '#ffffff', fontSize: 16}}>Login</ButtonText>
+      <Button style={{ backgroundColor: '#FC6011' }} onPress={login}>
+        <ButtonText style={{ color: '#ffffff', fontSize: 16 }}>Login</ButtonText>
       </Button>
 
-      <Button>
+      <Button onPress={() => navigation.navigate('ResetPassword')}>
         <ButtonText>Forgot your password?</ButtonText>
       </Button>
 
@@ -113,10 +116,10 @@ const Login = ({ navigation }) => {
         </FlexRow>
       </Button> */}
 
-      <Button 
-        onPress={() => navigation.navigate('Register') }
-      >
-        <ButtonText>Don't have an Account? Sign Up</ButtonText>
+      <Button onPress={() => navigation.navigate('Register')}>
+        <ButtonText>
+          Don't have an Account? <BoldText style={{ color: '#DD4B39' }}>Sign Up</BoldText>
+        </ButtonText>
       </Button>
     </Page>
   );

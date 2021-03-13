@@ -1,7 +1,8 @@
 import React from 'react';
 import Welcome from './src/screens/Welcome/Welcome';
-import Login from './src/screens/Login/Login'
-import Register from './src/screens/Register/Register'
+import Login from './src/screens/Login/Login';
+import Register from './src/screens/Register/Register';
+import ResetPassword from './src/screens/ResetPassword/ResetPassword';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from 'styled-components';
@@ -28,6 +29,11 @@ const App = () => {
           <Stack.Screen
             name="Register"
             component={ Register }
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ResetPassword"
+            component={ ResetPassword }
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

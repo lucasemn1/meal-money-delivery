@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
-import {Page} from '../../../styles/layout';
-import {Title, Subtitle} from '../../../styles/typography';
-import {Input, anotherStyles} from '../../../styles/inputs';
-import {Button, ButtonText} from '../../../styles/buttons';
-import auth from '@react-native-firebase/auth';
-import {ERRORS_MESSAGES} from '../../services/firebase';
+import React, { useState } from 'react';
+import { Page } from '../../../styles/layout';
+import { Title, Subtitle } from '../../../styles/typography';
+import { Input, anotherStyles } from '../../../styles/inputs';
+import { Button, ButtonText } from '../../../styles/buttons';
+import { ERRORS_MESSAGES } from '../../services/firebase';
+import { StatusBar } from 'react-native';
 import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState({
@@ -37,32 +38,32 @@ const Register = ({ navigation }) => {
     let everythingOk = true;
 
     if (name.value === '') {
-      setName({...name, hasError: true});
+      setName({ ...name, hasError: true });
       everythingOk = false;
     }
     if (email.value === '') {
-      setEmail({...email, hasError: true});
+      setEmail({ ...email, hasError: true });
       everythingOk = false;
     }
     if (mobileNumber.value === '') {
-      setMobileNumber({...mobileNumber, hasError: true});
+      setMobileNumber({ ...mobileNumber, hasError: true });
       everythingOk = false;
     }
     if (address.value === '') {
-      setAddress({...address, hasError: true});
+      setAddress({ ...address, hasError: true });
       everythingOk = false;
     }
     if (password.value === '') {
-      setPassword({...password, hasError: true});
+      setPassword({ ...password, hasError: true });
       everythingOk = false;
     }
     if (confirmPassword.value === '') {
-      setConfirmPassword({...confirmPassword, hasError: true});
+      setConfirmPassword({ ...confirmPassword, hasError: true });
       everythingOk = false;
     }
     if (password.value !== confirmPassword.value) {
-      setPassword({...password, hasError: true});
-      setConfirmPassword({...confirmPassword, hasError: true});
+      setPassword({ ...password, hasError: true });
+      setConfirmPassword({ ...confirmPassword, hasError: true });
       everythingOk = false;
 
       alert('As senhas não coincidem');
@@ -72,7 +73,7 @@ const Register = ({ navigation }) => {
   }
 
   async function singIn() {
-    if(await registerUser()) {
+    if (await registerUser()) {
       auth()
         .createUserWithEmailAndPassword(email.value, password.value)
         .then(() => {
@@ -108,6 +109,7 @@ const Register = ({ navigation }) => {
 
   return (
     <Page>
+      <StatusBar barStyle="dark-content" />
       <Title>Sign Up</Title>
       <Subtitle>Add your details to sign up</Subtitle>
 
@@ -115,25 +117,25 @@ const Register = ({ navigation }) => {
         placeholder="Name"
         style={name.hasError ? anotherStyles.inputAlert : {}}
         value={name.value}
-        onChangeText={(e) => setName({value: e, hasError: false})}
+        onChangeText={(e) => setName({ value: e, hasError: false })}
       />
       <Input
         placeholder="Email"
         style={email.hasError ? anotherStyles.inputAlert : {}}
         value={email.value}
-        onChangeText={(e) => setEmail({hasError: false, value: e})}
+        onChangeText={(e) => setEmail({ hasError: false, value: e })}
       />
       <Input
         placeholder="Mobile number"
         style={mobileNumber.hasError ? anotherStyles.inputAlert : {}}
         value={mobileNumber.value}
-        onChangeText={(e) => setMobileNumber({hasError: false, value: e})}
+        onChangeText={(e) => setMobileNumber({ hasError: false, value: e })}
       />
       <Input
         placeholder="Address"
         style={address.hasError ? anotherStyles.inputAlert : {}}
         value={address.value}
-        onChangeText={(e) => setAddress({hasError: false, value: e})}
+        onChangeText={(e) => setAddress({ hasError: false, value: e })}
       />
       <Input
         placeholder="Password"
@@ -141,7 +143,7 @@ const Register = ({ navigation }) => {
         secureTextEntry={true}
         style={password.hasError ? anotherStyles.inputAlert : {}}
         value={password.value}
-        onChangeText={(e) => setPassword({hasError: false, value: e})}
+        onChangeText={(e) => setPassword({ hasError: false, value: e })}
       />
       <Input
         placeholder="Confirm password"
@@ -149,11 +151,11 @@ const Register = ({ navigation }) => {
         secureTextEntry={true}
         style={confirmPassword.hasError ? anotherStyles.inputAlert : {}}
         value={confirmPassword.value}
-        onChangeText={(e) => setConfirmPassword({hasError: false, value: e})}
+        onChangeText={(e) => setConfirmPassword({ hasError: false, value: e })}
       />
 
-      <Button style={{backgroundColor: '#FC6011'}} onPress={singIn}>
-        <ButtonText style={{color: '#ffffff'}}>Sing Up</ButtonText>
+      <Button style={{ backgroundColor: '#FC6011' }} onPress={singIn}>
+        <ButtonText style={{ color: '#ffffff' }}>Sing Up</ButtonText>
       </Button>
     </Page>
   );

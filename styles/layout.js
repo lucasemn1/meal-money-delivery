@@ -6,4 +6,5 @@ export const Page = styled.View`
   align-items: center;
   flex: 1;
   background-color: ${(props) => props.theme.colors.backgroundColor};
+  padding: 0 35px;
 `;
