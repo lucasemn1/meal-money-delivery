@@ -3,6 +3,7 @@ import Welcome from './src/screens/Welcome/Welcome';
 import Login from './src/screens/Login/Login';
 import Register from './src/screens/Register/Register';
 import ResetPassword from './src/screens/ResetPassword/ResetPassword';
+import FirstUseTutorial from './src/screens/FirstUseTutorial/FirstUseTutorial';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from 'styled-components';
@@ -11,11 +12,11 @@ import darkTheme from './styles/themes/darkTheme';
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const App = (teste) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="FirstUseTutorial">
           <Stack.Screen
             name="Welcome"
             component={ Welcome }
@@ -34,6 +35,11 @@ const App = () => {
           <Stack.Screen
             name="ResetPassword"
             component={ ResetPassword }
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="FirstUseTutorial"
+            component={ FirstUseTutorial }
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

@@ -23,7 +23,6 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState({ value: '', hasError: false });
 
   function login() {
-    // alert('OPAA');
     let formOk = true;
 
     if (email.value === '') {
@@ -48,7 +47,7 @@ const Login = ({ navigation }) => {
       auth()
         .signInWithEmailAndPassword(email.value, password.value)
         .then(() => {
-          alert('Login realizado com sucesso!');
+          navigation.navigate('FirstUseTutorial');
         })
         .catch((error) =>
           alert(firebaseServices.ERRORS_MESSAGES[error.code])

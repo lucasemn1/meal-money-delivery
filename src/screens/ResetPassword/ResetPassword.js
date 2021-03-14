@@ -6,9 +6,35 @@ import { Subtitle, Title } from '../../../styles/typography';
 import { anotherStyles } from '../../../styles/inputs';
 import { Button, ButtonText } from '../../../styles/buttons';
 import { StyleSheet } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
-const ResetPassword = ({ navigation }) => {
+const ResetPassword = () => {
   const [ email, setEmail ] = useState({ value: '', hasError: false });
+
+  function validateFields() {
+    let everythingOk = true;
+
+    if (email.value === '') {
+      setEmail({ ...email, hasError: true });
+      everythingOk = false;
+    }
+
+    return everythingOk;
+  }
+
+  function resetPassword() {
+    if(validateFields()) {
+      auth()
+        .sendPasswordResetEmail(email.value)
+        .then(() => {
+          alert('Por favor, verifique seu email.');
+        })
+        .catch((err) => {
+          console.log(err)
+          alert('Email não cadastrado. Por favor, verifique e tente novamente.');
+        });
+    }    
+  }
 
   return (
     <Page style={pageStyles.page}>
@@ -22,10 +48,10 @@ const ResetPassword = ({ navigation }) => {
         placeholder="Email"
         style={email.hasError ? anotherStyles.inputAlert : {}}
         value={email.value}
-        onChangeText={(e) => setName({ value: e, hasError: false })}
+        onChangeText={(e) => setEmail({ value: e, hasError: false })}
       />
 
-      <Button style={buttonStyles.send}>
+      <Button style={buttonStyles.send} onPress={resetPassword}>
         <ButtonText style={{ color: '#fff' }}>
           Send
         </ButtonText>

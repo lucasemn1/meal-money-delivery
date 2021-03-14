@@ -100,6 +100,7 @@ const Register = ({ navigation }) => {
 
         return true;
       } catch (err) {
+        console.log(err);
         return false;
       }
     } else {
